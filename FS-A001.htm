@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<title>Online Shopping Site: Toys, Stationary, Personal Care, Corporate Gifts, Accessories - First Step</title>
+
+<style type="text/css">
+<!--
+body {
+	background-image: url(images/icons2.jpg);
+}
+.style1 {font-family: Verdana, Arial, Helvetica, sans-serif}
+.style2 {
+	color: #000066;
+	font-weight: bold;
+}
+-->
+</style>
+
+<script>
+function clickCounter(keey,val) {
+//alert('qt'+keey);
+//alert('item choosed'+val);
+var e = document.getElementById("qty"); 
+var strUser = e.options[e.selectedIndex].value;
+//alert('qty'+strUser);
+//alert(val+"@"+strUser); 
+    if(typeof(Storage) !== "undefined") {
+         
+               localStorage.setItem(keey,val+"@"+strUser); 
+                
+              // sessionStorage.setItem("firstkey",val); 
+              
+
+    } else {
+        document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
+    }
+}
+</script>
+<script language="javascript" type="text/javascript">
+<!--
+function popitup(url) {
+	newwindow=window.open(url,'name','height=600,width=640');
+	if (window.focus) {newwindow.focus()}
+	return false;
+}
+
+function buyNowVal(key,val){
+    clickCounter(key,val);
+}
+// -->
+</script>
+</head>
+
+<body>
+<div align="center"><a href="new.htm"><img src="images/band.jpg" align="middle" width="1150" height="199" position="fixed" /></a>
+</div>
+<table width="1150" border="0" align="center">
+  <tr>
+    <th rowspan="5" scope="col" width="195" height="908"><img src="images/menu2.jpg" width="164" height="908" border="0" usemap="#Map" /></th>
+  <tr>
+    <th scope="col" width="455" height="333"><img src="products/FS-A001-1.png" width="482" height="418" onclick="changeImg" /></th>
+    <td width="486" height="333" valign="top" bgcolor="#FFFFFF" scope="col"><div align="left">
+      <p>&nbsp;</p>
+      <p><span class="style1"><span class="style2">Remote Control Car</span><br />
+          <img src="images/3star.jpg" width="48" height="14" /><br />
+        Code: FS-A001<br />
+        <span class="style2">Price: Rs.1,100/-</span><br />
+      Quantity
+        <select name="qty" id="qty">
+          <option value="1" selected="selected">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+<br />
+      </span><span class="style1">(stock subject to availability, for bulk order call us)</span></p>
+      <p><a href="order.htm"><img src="images/buy.jpg" width="106" height="26" onclick ="buyNowVal('firsta001','FS-A001 @1100');"/></a> <img src="images/atc.jpg" width="106" height="26" onclick="clickCounter('firsta001','FS-A001 @1100');"/></p>
+      <p><span class="style1">Wembley BIG 1:14 X Racing Powerful Remote Control Car with Opening Doors and Lights (GREY &amp; ORANGE)<br />
+BIG &amp; MEAN - Porsche Type Design of 1:14 Scale<br />
+Remote functions: Open &amp; Close the Doors &amp; Trunk, Left turn, Right turn, Forward and Backward<br />
+Distinct LED Lights<br />
+INCLUDES Rechargeable 6V AA Battery and<br />
+Charger for the Car<br />
+Rubber Tyres with Amazing Blue Rims for<br />
+Better Road Grip<br />
+Product size - 46.3 x 23.6 x 18.7 cm</span></p>
+      <p><br />
+      </p>
+    </div></td>
+  </tr>
+  <tr>
+    <th colspan="2" scope="col">
+	<a href="FS-A001D.htm" onclick="return popitup('FS-A001D.htm')"	>
+<img src="products/FS-A001-2.png" width="250" height="159" border="0" /><img src="products/FS-A001-3.png" width="250" height="159" /><img src="products/FS-A001-4.png" width="250" height="159" /></a></th>
+  </tr>
+  <tr>
+    <th colspan="2" scope="col"><img src="images/on.jpg" width="355" height="126" /></th>
+  </tr>
+</table>
+<p align="center"><br />
+  
+  </a><a href="test.htm"><br />
+</a></a></a></p>
+</div> 
+<map name="Map" id="Map">
+  <area shape="rect" coords="2,141,134,165" href="accessories.htm" target="_self" />
+  <area shape="rect" coords="2,114,134,138" href="corporategifts.htm" target="_self" />
+  <area shape="rect" coords="2,90,134,114" href="personalcare.htm" target="_self" />
+  <area shape="rect" coords="2,64,134,88" href="stationary.htm" target="_self" />
+  <area shape="rect" coords="2,39,134,63" href="toys.htm" target="_self" />
+<area shape="rect" coords="1,166,133,188" href="contact.htm" target="_self" />
+</map>

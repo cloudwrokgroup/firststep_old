@@ -1,0 +1,308 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<title>Online Shopping Site: Toys, Stationary, Personal Care, Corporate Gifts, Accessories - First Step</title>
+
+<style type="text/css">
+<!--
+body {
+	background-image: url(images/icons2.jpg);
+}
+.style1 {font-family: Verdana, Arial, Helvetica, sans-serif}
+.style3 {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; }
+-->
+</style>
+
+<script type="text/javascript">
+function showList() {
+//alert('onload');
+newTable="";
+var total=0;
+products="";
+quantity="";
+price="";
+total=0;
+totaltag="";
+var prod_val = new Array();
+var qty_val = new Array();
+var price_val = new Array();
+var tot_val = new Array();
+	if(typeof(Storage) !== "undefined") {
+		      for ( var i = 0, len = localStorage.length; i < len; ++i ) {
+			if(localStorage.key( i ).startsWith("first")){
+				var iteme = localStorage.key(i);
+				var arr=localStorage.getItem( localStorage.key( i )).split("@");
+				newTable+="<TR id='myrow'>";
+				
+				newTable+="<TD>"+arr[0]+"</TD><TD>"+arr[1]+"</TD><TD>"+arr[2]+"</TD>";
+				
+				newTable+="</TR>";
+				
+				products+=arr[0]+"<img src='images/delete.png' width='30' height='15' onclick=redirect('"+iteme+"'); /><br>";
+				quantity+=arr[2]+"<br>";
+				price+=arr[1]+"<br>";
+				totaltag+=(arr[1]*arr[2])+"<br>";
+				total=total+(arr[1]*arr[2]);
+				
+			}
+		     }
+		//newTable+=+"<TD>"+total+"</TD></TR>";
+		//newTable+=endTag;
+		
+		document.getElementById('pro').innerHTML=products;
+		document.getElementById('quant').innerHTML=quantity;
+		document.getElementById('pric').innerHTML=price;
+		document.getElementById('tot').innerHTML=totaltag;
+		document.getElementById('totalg').innerHTML=total;
+	
+	}
+}
+function redirect (link) {
+	//alert ('called redirect');
+	localStorage.removeItem(link);
+	location.reload();
+}
+</script>
+<script>
+function fillValues() {
+      var value = $("#pro").val();
+      var fields= $(".autofiller");
+      fields.each(function (i) {
+        $(this).val(value);
+      });
+}
+
+fillValuesNoJQuery = function () {
+      var value = document.getElementById("pro").value;
+      var oForm = document.getElementById("sampleForm");
+      var i = 0;
+      while (el = oForm.elements[i++]) if (el.className == 'autofiller') el.value= value ;
+}
+
+//$("#filler").click(fillValues);
+
+
+
+</script>
+<script src="jquery.js"></script>
+<script language="javascript" type="text/javascript">
+
+	
+	function submitdata(){
+	totalVal=0;
+	var prod_val = new Array();
+	var qty_val = new Array();
+	var price_val = new Array();
+	var tot_val = new Array();
+	$("#dateshowed").empty(); 
+	 var mem_name = $( "#first_name" ).val();
+	 var mem_email = $( "#email" ).val();
+	 var mem_mobile = $( "#mobnumberValidate" ).val();
+	 var mem_telephone = $( "#telephone" ).val();
+	 var mem_address = $( "#address" ).val();
+	 
+	  if(typeof(Storage) !== "undefined") {
+			      for ( var i = 0, len = localStorage.length; i < len; ++i ) {
+				if(localStorage.key( i ).startsWith("first")){
+					var iteme = localStorage.key(i);
+					var arr=localStorage.getItem( localStorage.key( i )).split("@");
+					totalVal=totalVal+(arr[1]*arr[2]);
+					prod_val[i] = arr[0];
+					qty_val[i] = arr[2];
+					price_val[i] = arr[1];
+					tot_val[i] = arr[1]*arr[2];
+				}
+			     }
+          }
+	 	
+	    if(prod_val=="")
+	    {
+	    	$('#dateshowed').append('Please Add atleast one product');
+	    	return false;
+	    } else if(mem_name=="")
+	    {
+	    	$('#dateshowed').append('Please fill your Name');
+	    	return false;
+	    } else if(mem_email=="")
+	    {
+	    	$('#dateshowed').append('Please fill email Id');
+	    	return false;
+	    }else  if(mem_mobile=="")
+	    {
+	    	$('#dateshowed').append('Please fill your mobile numer');
+	    	return false;
+	    }else  if(mem_mobile.length!=10)
+	    {
+	    	$('#dateshowed').append('Please enter 10 digit mobile numer');
+	    	return false;
+	    }  else if(mem_address=="")
+	    {
+	    	$('#dateshowed').append('Please fill your address');
+	    	return false;
+	    }else{
+		   
+		   var d={
+		           "mem_name":mem_name,
+		           "mem_email":mem_email,
+		           "mem_mob":mem_mobile,
+		           "mem_telephone":mem_telephone,
+		           "mem_address":mem_address,
+		           "prod_name":prod_val,
+		           "qty_val":qty_val,
+		           "price_val":price_val,
+		           "tot_val":tot_val,
+		           "grandTot":totalVal
+		           };
+		          // console.log(JSON.stringify(d));
+		   $.ajax
+		         ({
+		           'dataType': 'json',
+		           'type'    : 'POST',
+		           'url'     : "mail.php",
+		           'data'    :  d,
+		           "beforeSend" : function(){
+		           	 $('#submit_button').hide();
+		           	 $('#loading').show();
+		              },
+		           "success" : function(response) {
+		          
+				     if(response.status=='error'){
+				     
+				    	 $('#dateshowed').append(response.message);
+				    	 $('#loading').hide();
+				    	 $('#submit_button').show();
+		           		
+				    	 return false;
+				     
+				     } else{
+				         if(typeof(Storage) !== "undefined") {
+            		              window.localStorage.clear();
+            		          	alert(response.message);
+					            window.location.href = 'http://www.1stfirststep.com/new.htm';
+                        	}
+					    
+				     
+				     }      
+			              
+		            }
+		         });
+	    
+	    }
+	    return false;
+	}
+	
+function removecartVal (cVal) {
+
+	localStorage.removeItem(cVal);
+    return true;
+}	
+
+
+
+$(function(){
+$('#mobnumberValidate').bind('keyup',function () { 
+	 this.value = this.value.replace(/[^0-9\.]/g,'');
+});
+
+$('#telephone').bind('keyup',function () { 
+	 this.value = this.value.replace(/[^0-9\.]/g,'');
+});
+});
+</script>
+</head>
+
+<body onLoad="showList();">
+<div align="center"><a href="new.htm"><img src="images/band.jpg" align="middle" width="1150" height="199" position="fixed" /></a>
+</div>
+<form id="product_detail" name="contactform" method="post" onsubmit="return submitdata();">
+<table width="1150" border="1" align="center" bgcolor="#FFFFFF" >
+  <tr>
+    <th rowspan="8" scope="col" width="164" height="968"><img src="images/menu.jpg" width="164" height="908" border="0" usemap="#Map" />
+      <map name="Map" id="Map">
+        <area shape="rect" coords="2,141,134,165" href="accessories.htm" target="_self" />
+        <area shape="rect" coords="2,114,134,138" href="corporategifts.htm" target="_self" />
+        <area shape="rect" coords="2,90,134,114" href="personalcare.htm" target="_self" />
+        <area shape="rect" coords="2,64,134,88" href="stationary.htm" target="_self" />
+        <area shape="rect" coords="2,39,134,63" href="toys.htm" target="_self" />
+        <area shape="rect" coords="1,166,133,188" href="contact.htm" target="_self" />
+      </map></th>
+  <tr>
+    <td height="18" colspan="4" scope="col" bordercolor="#000000" valign="top"><div align="center"  ><span class="style1">Order Detail: </span></div></td>
+  </tr>
+  <tr>
+    <td width="634" height="19" scope="col"><div align="center"><span class="style1">Products</span></div></td>
+    <td width="89" scope="col"><div align="center"><span class="style1">Quantity</span></div></td>
+    <td width="116" scope="col"><div align="center"><span class="style1">Price</span></div></td>
+    <td width="125" height="18" scope="col"><div align="center"><span class="style1">Total</span></div></td>
+  </tr>
+  <tr valign="top">
+    <td height="454" scope="col"><label id='pro'></label> <label id="prod_val"></label>  </td>
+    
+    <td height="454" scope="col"><label id='quant'></label></td>
+    <td scope="col"><label id='pric'></label></td>
+    <td height="454" scope="col"><label id='tot'></label></td>
+  </tr>
+  <tr>
+    <td colspan="3" scope="col"><div align="right"><span class="style1">Grand Total </span></div></td>
+    <th scope="col">&nbsp;<label id='totalg'></label></th>
+  </tr>
+  <tr>
+    <th height="43" colspan="4" scope="col"><table width="800px" align="left">
+	  
+      <tr><h4 id="dateshowed" style="color: red;"></h4>
+        <td valign="top" align="left"><label for="first_name">
+        <div align="left"><span class="style3">Name</span></div>
+        </label></td>
+        <td valign="top"><div align="left">
+          <input type="text" class="autofiller" name="first_name" id="first_name" maxlength="50" size="60" />
+        </div></td>
+      </tr>
+          <tr>
+        <td valign="top"><label for="email" class="style3">
+        <div align="left">Email</div>
+        </label></td>
+        <td valign="top"><div align="left">
+          <input  type="text" name="email" id="email" maxlength="80" size="60" />        
+        </div></td>
+      </tr>
+      <tr>
+        <td valign="top"><label for="telephone"   class="style3">
+          <div align="left">Mobile Number</div>
+        </label>        </td>
+        <td valign="top"><div align="left">
+          <input  type="text" name="mobnumberValidate" maxlength="10" id="mobnumberValidate"  size="30" />        
+        </div></td>
+      </tr>
+      <tr>
+        <td valign="top"><label for="telephone"   class="style3">
+          <div align="left">Telephone</div>
+        </label>        </td>
+        <td valign="top"><div align="left">
+          <input  type="text" name="telephone" maxlength="12" id="telephone"  size="30" />        
+        </div></td>
+      </tr>
+
+      <tr>
+        <td valign="top"><label for="comments" class="style3">
+          <div align="left">Address</div>
+        </label>        </td>
+        <td valign="top"><div align="left">
+          <textarea  name="address" id="address" maxlength="100" cols="50" rows="6"></textarea>
+        </div></td>
+      </tr>
+      <tr>
+        <td colspan="2" style="text-align:center"><input name="submit" id="submit_button" type="submit" value="Submit" /> <img id="loading" src="images/loading_img.jpg" style="height: 50px; width: 9%; display:none"/></span> </td>
+      </tr>
+	 
+    </table></th>
+  </tr>
+  <tr>
+    <th height="44" colspan="4" scope="col">&nbsp;</th>
+  </tr>
+</table>
+ </form>
+</div>
+</body></html>
+
+

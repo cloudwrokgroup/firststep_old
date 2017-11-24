@@ -1,0 +1,35 @@
+<html>
+<head>
+    <title>FS-A001</title>
+    <script type="text/javascript">
+        function PreloadImages() {
+            var img1 = new Image();
+            img1.src = "products/FS-A003-2.jpg";
+            document.$Image1 = img1;
+
+            var img2 = new Image();
+            img2.src = "products/FS-A003-3.jpg";
+            document.$Image2 = img2;
+			
+        }
+
+        function SetImage(n) {
+            var image = document.getElementById("myimg");
+
+            if (n == 1) {
+                image.src = document.$Image1.src;
+            }
+            else if (n == 2) {
+                image.src = document.$Image2.src;
+            }
+        }
+
+    </script>
+</head>
+<body onLoad="PreloadImages ()">
+    <p>
+        <input type="button" value="Image 1" onClick="SetImage (1)" />
+        <input type="button" value="Image 2" onClick="SetImage (2)" /></p>
+<img src="products/FS-A003-2.jpg" alt="My Image" width="480" height="480" id="myimg"/>
+</body>
+</html>

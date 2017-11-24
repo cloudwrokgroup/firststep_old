@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<title>Online Shopping Site: Toys, Stationary, Personal Care, Corporate Gifts, Accessories - First Step</title>
+
+<style type="text/css">
+table, td {
+    border: 1px solid black;
+}
+</style>
+
+<!--
+body {
+	background-image: url(images/icons2.jpg);
+}
+-->
+</style>
+</head>
+
+<body onLoad="showList();">
+<div align="center"><a href="new.htm"><img src="images/band.jpg" align="middle" width="1150" height="199" position="fixed" /></a>
+</div>
+<div id="tableDiv" style="text-align:center" >
+
+</div>
+</table>
+<p align="center"><br />
+  
+  </a><a href="test.htm"><br />
+</a></a></a></p>
+</div> 
+<map name="Map" id="Map">
+<area shape="rect" coords="2,39,43,62" href="toys.htm" target="_self" />
+<area shape="rect" coords="1,166,51,188" href="contact.htm" target="_self" />
+</map>
+
+<map name="Map2" id="Map2">
+<area shape="rect" coords="4,333,570,452" href="https://www.facebook.com/1st.Firststep/" target="_blank" />
+</map>
+<script>
+function showList() {
+alert('onload');
+//Creating a new table
+
+startTag="<TABLE id='mainTable'><TBODY><TR><TD style=\"WIDTH: 120px\">Items</TD><TD style=\"WIDTH: 120px\">Price</TD><TD style=\"WIDTH: 120px\">No of Items</TD></TR>";
+
+endTag="</TBODY></TABLE>";
+totalTag="<TR><TD>Total=</TD>";
+newTable=startTag;
+var total=0;
+if(typeof(Storage) !== "undefined") {
+       for ( var i = 0, len = localStorage.length; i < len; ++i ) {
+	if(localStorage.key( i ).startsWith("first")){
+  
+var arr=localStorage.getItem( localStorage.key( i )).split("@");
+newTable+="<TR>";
+
+newTable+="<TD>"+arr[0]+"</TD><TD>"+arr[1]+"</TD><TD>"+arr[2]+"</TD>";
+
+newTable+="</TR>";
+total=total+(arr[1]*arr[2]);
+		}
+	}
+newTable+=totalTag+"<TD>"+total+"</TD></TR>";
+newTable+=endTag;
+alert(newTable);
+document.getElementById('tableDiv').innerHTML=newTable;
+
+}
+}
+
+</script>

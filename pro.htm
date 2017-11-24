@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<title>Online Shopping Site: Toys, Stationary, Personal Care, Corporate Gifts, Accessories - First Step</title>
+
+<style type="text/css">
+<!--
+body {
+	background-image: url(images/icons2.jpg);
+}
+.style1 {font-family: Verdana, Arial, Helvetica, sans-serif}
+.style2 {
+	color: #000066;
+	font-weight: bold;
+}
+-->
+</style>
+
+<script>
+function clickCounter(val,qt) {
+alert('qt'+qt);
+alert('item choosed'+val);
+var e = document.getElementById("qty"); 
+var strUser = e.options[e.selectedIndex].value;
+alert('qty'+strUser);
+alert(val+"@"+strUser); 
+    if(typeof(Storage) !== "undefined") {
+         
+               localStorage.setItem("firstkey",val+"@"+strUser); 
+                
+               sessionStorage.setItem("firstkey",val); 
+              for ( var i = 0, len = localStorage.length; i < len; ++i ) {
+  alert( localStorage.getItem( localStorage.key( i ) ) );
+}
+
+    } else {
+        document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
+    }
+}
+</script>
+</head>
+
+<body>
+<div align="center"><a href="new.htm"><img src="images/band.jpg" align="middle" width="1150" height="199" position="fixed" /></a>
+</div>
+<table width="1150" border="0" align="center">
+  <tr>
+    <th rowspan="5" scope="col" width="195" height="908"><img src="images/menu.jpg" width="164" height="908" border="0" usemap="#Map" /></th>
+  <tr>
+    <th scope="col" width="455" height="333"><img src="images/4.jpg" width="482" height="418" /></th>
+    <td width="486" height="333" valign="top" bgcolor="#FFFFFF" scope="col"><div align="left">
+      <p>&nbsp;</p>
+      <p><span class="style1"><span class="style2">Ball Shoot</span><br />
+          <img src="images/5star.jpg" width="81" height="14" /><br />
+        Code: FS-A001<br />
+        <span class="style2">Price: Rs.300/-</span><br />
+      Quantity
+        <select name="qty" id="qty">
+          <option value="1" selected="selected">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+<br />
+      </span><span class="style1">(stock subject to availability, for bulk order call us)</span></p>
+      <p><a href="cart.htm"><img src="images/buy.jpg" width="106" height="26" /></a> <img src="images/atc.jpg" width="106" height="26" onclick="clickCounter('FS-A001 @300');"/></p>
+      <p><span class="style1">Funny Game - Ball Shoot Activate<br />
+        For 1 or 3 Players<br />
+        Real Sports Action Games For Kid<br />
+        Just do it and see who will be<br />
+        the real expert of playing the pinball game.</span></p>
+      <p><br />
+      </p>
+    </div></td>
+  </tr>
+  <tr>
+    <th colspan="2" scope="col"><img src="images/on.jpg" width="355" height="126" /></th>
+  </tr>
+  <tr>
+    <th colspan="2" scope="col">&nbsp;</th>
+  </tr>
+</table>
+<p align="center"><br />
+  
+  </a><a href="test.htm"><br />
+</a></a></a></p>
+</div> 
+<map name="Map" id="Map">
+<area shape="rect" coords="2,39,43,62" href="toys.htm" target="_self" />
+<area shape="rect" coords="1,166,51,188" href="contact.htm" target="_self" />
+</map>

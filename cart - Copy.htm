@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Online Shopping Site: Toys, Stationary, Personal Care, Corporate Gifts, Accessories - First Step</title>
+
+<style type="text/css">
+table, td {
+    border: 1px solid black;
+}
+</style>
+
+<!--
+body {
+	background-image: url(images/icons2.jpg);
+}
+-->
+</style>
+</head>
+
+<body onLoad="showList();">
+<div align="center"><a href="new.htm"><img src="images/band.jpg" align="middle" width="1150" height="199" position="fixed" /></a>
+</div>
+<table id="myTable">
+  <tr>
+    <th>Item List</td>
+    <th>Price</td>
+
+  </tr>
+</table>
+<p align="center"><br />
+  
+  </a><a href="test.htm"><br />
+</a></a></a></p>
+</div> 
+<map name="Map" id="Map">
+<area shape="rect" coords="2,39,43,62" href="toys.htm" target="_self" />
+<area shape="rect" coords="1,166,51,188" href="contact.htm" target="_self" />
+</map>
+
+<map name="Map2" id="Map2">
+<area shape="rect" coords="4,333,570,452" href="https://www.facebook.com/1st.Firststep/" target="_blank" />
+</map>
+<script>
+function showList() {
+alert('onload');
+if(typeof(Storage) !== "undefined") {
+alert(localStorage); 
+
+alert(sessionStorage);
+       for ( var i = 0, len = localStorage.length; i < len; ++i ) {
+	if(localStorage.key( i ).startsWith("first")){
+  alert( localStorage.getItem( localStorage.key( i ) ) );
+
+
+    
+    var table = document.getElementById("myTable");
+    var row = table.insertRow(0);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+	var arr=localStorage.getItem( localStorage.key( i )).split("@");
+    cell1.innerHTML = arr[0];
+    cell2.innerHTML = arr[1];
+	}
+}
+}
+}
+
+</script>
